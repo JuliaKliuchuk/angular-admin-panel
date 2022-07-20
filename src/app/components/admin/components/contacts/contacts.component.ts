@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { AdminService } from '../../services/admin.service';
 import { User } from '../../user';
 
@@ -13,11 +14,11 @@ export class ContactsComponent implements OnInit {
   personList!: Observable<User[]>;
 
   constructor(
-    private adminservice: AdminService
+    private activatedRoute: ActivatedRoute,
+
   ) { }
 
   ngOnInit(): void {
-    this.personList = this.adminservice.getPersonList();
+    this.personList = this.activatedRoute.data.pipe(map((data) => data?.['users'] ))
   }
-
 }

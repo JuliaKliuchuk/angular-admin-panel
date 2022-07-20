@@ -21,7 +21,6 @@ export class ContactsDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => this.id = params?.['id'])
-    this.user = this.adminService.getPerson(this.id);
+    this.user = this.activatedRoute.data.pipe(map((data) => data?.['user'] ))
   }
 }
