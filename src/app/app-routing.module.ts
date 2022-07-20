@@ -5,18 +5,18 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: 'login', component: LoginComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
-    path: '**',
-    component: NotFoundComponent
-  }
+    path: 'admin',
+    loadChildren: () => import('./components/admin/admin.module').then((m) => m.AdminModule)
+  },
+  {
+    path: '**', component: NotFoundComponent
+  },
 ];
 
 @NgModule({

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
 
     this.authService.login(this.loginForm.value).subscribe({
-      next:() => this.router.navigate(['abmin']),
+      next:() => this.router.navigate(['admin']),
       error: (err) => alert(err.message)
     })
   }
