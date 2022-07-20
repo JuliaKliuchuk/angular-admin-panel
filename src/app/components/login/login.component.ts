@@ -22,14 +22,15 @@ export class LoginComponent implements OnInit {
       'email': new FormControl('', [Validators.required, Validators.email]),
       'password': new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
     })
+    if(this.authService.isLoggedIn()) {
+      this.router.navigate(['admin'])
+    }
   }
 
   submitLogin() {
-    console.log(this.loginForm.value);
-
     this.authService.login(this.loginForm.value).subscribe({
       next:() => this.router.navigate(['admin']),
       error: (err) => alert(err.message)
-    })
+    });
   }
 }
